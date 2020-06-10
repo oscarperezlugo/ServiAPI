@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="serviModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="serviEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="empresa" EntityType="serviModel.empresa" />
+    <EntitySet Name="producto" EntityType="serviModel.producto" />
+    <EntitySet Name="servicio" EntityType="serviModel.servicio" />
+    <EntitySet Name="tiempo" EntityType="serviModel.tiempo" />
+    <EntitySet Name="vehiculo" EntityType="serviModel.vehiculo" />
+    <EntitySet Name="usuario" EntityType="serviModel.usuario" />
+    <AssociationSet Name="FK_empresa_usuario" Association="serviModel.FK_empresa_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="empresa" EntitySet="empresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_producto_usuario" Association="serviModel.FK_producto_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_servicio_usuario" Association="serviModel.FK_servicio_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="servicio" EntitySet="servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tiempo_usuario" Association="serviModel.FK_tiempo_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="tiempo" EntitySet="tiempo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vehiculo_usuario" Association="serviModel.FK_vehiculo_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="vehiculo" EntitySet="vehiculo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="empresa">
+    <Key>
+      <PropertyRef Name="id_empresa" />
+    </Key>
+    <Property Name="id_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rif" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="guid" Type="Guid" />
+    <NavigationProperty Name="usuario" Relationship="serviModel.FK_empresa_usuario" FromRole="empresa" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="precio" Type="Double" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="guid" Type="Guid" />
+    <NavigationProperty Name="usuario" Relationship="serviModel.FK_producto_usuario" FromRole="producto" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="servicio">
+    <Key>
+      <PropertyRef Name="id_servicio" />
+    </Key>
+    <Property Name="id_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tiempo" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="guid" Type="Guid" />
+    <NavigationProperty Name="usuario" Relationship="serviModel.FK_servicio_usuario" FromRole="servicio" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="tiempo">
+    <Key>
+      <PropertyRef Name="id_tiempo" />
+    </Key>
+    <Property Name="id_tiempo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="servicio" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_limite" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="guid" Type="Guid" />
+    <NavigationProperty Name="usuario" Relationship="serviModel.FK_tiempo_usuario" FromRole="tiempo" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="vehiculo">
+    <Key>
+      <PropertyRef Name="id_vehiculo" />
+    </Key>
+    <Property Name="id_vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="anho" Type="Int32" Nullable="false" />
+    <Property Name="tipo_aceite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="km_ultimo_servicio" Type="Int32" />
+    <Property Name="fecha_servicio" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="guid" Type="Guid" />
+    <NavigationProperty Name="usuario" Relationship="serviModel.FK_vehiculo_usuario" FromRole="vehiculo" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nombre_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="guid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="empresa" Relationship="serviModel.FK_empresa_usuario" FromRole="usuario" ToRole="empresa" />
+    <NavigationProperty Name="producto" Relationship="serviModel.FK_producto_usuario" FromRole="usuario" ToRole="producto" />
+    <NavigationProperty Name="servicio" Relationship="serviModel.FK_servicio_usuario" FromRole="usuario" ToRole="servicio" />
+    <NavigationProperty Name="tiempo" Relationship="serviModel.FK_tiempo_usuario" FromRole="usuario" ToRole="tiempo" />
+    <NavigationProperty Name="vehiculo" Relationship="serviModel.FK_vehiculo_usuario" FromRole="usuario" ToRole="vehiculo" />
+  </EntityType>
+  <Association Name="FK_empresa_usuario">
+    <End Type="serviModel.usuario" Role="usuario" Multiplicity="1" />
+    <End Type="serviModel.empresa" Role="empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="empresa">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_producto_usuario">
+    <End Type="serviModel.usuario" Role="usuario" Multiplicity="0..1" />
+    <End Type="serviModel.producto" Role="producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="producto">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_servicio_usuario">
+    <End Type="serviModel.usuario" Role="usuario" Multiplicity="1" />
+    <End Type="serviModel.servicio" Role="servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="servicio">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tiempo_usuario">
+    <End Type="serviModel.usuario" Role="usuario" Multiplicity="1" />
+    <End Type="serviModel.tiempo" Role="tiempo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="tiempo">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vehiculo_usuario">
+    <End Type="serviModel.usuario" Role="usuario" Multiplicity="1" />
+    <End Type="serviModel.vehiculo" Role="vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="vehiculo">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

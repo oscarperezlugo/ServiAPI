@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="29ebb476448441cd8937f91d4d9a9c56" Name="Diagram1" >
+        <EntityTypeShape EntityType="serviModel.empresa" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="serviModel.producto" Width="1.5" PointX="3" PointY="1.625" />
+        <EntityTypeShape EntityType="serviModel.servicio" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="serviModel.tiempo" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="serviModel.vehiculo" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="serviModel.usuario" Width="1.5" PointX="0.75" PointY="7.5" />
+        <AssociationConnector Association="serviModel.FK_empresa_usuario" />
+        <AssociationConnector Association="serviModel.FK_producto_usuario" />
+        <AssociationConnector Association="serviModel.FK_servicio_usuario" />
+        <AssociationConnector Association="serviModel.FK_tiempo_usuario" />
+        <AssociationConnector Association="serviModel.FK_vehiculo_usuario" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
